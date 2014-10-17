@@ -1,0 +1,31 @@
+## Eclipse ignorables ##
+.cproject
+.project
+.pydevproject
+cmake_install.cmake
+build
+Build
+Debug
+Release
+.settings
+CMakeCache.txt
+CMakeFiles
+_gtest_from_src
+
+## Generic ignorables ##
+.DS_Store
+*.coverage
+*.egg-info
+*.log
+*/tmp/*
+.svn
+
+# ignore vim, gedit, matlab and nano temp files
+*.swp
+*~
+*#
+.#*
+*.asv
+*.save
+*.save.*
+
