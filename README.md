@@ -27,6 +27,6 @@ mkdir build
 cd build
 cmake ..
 make
-make cyberpunk-upload # Assuming cyberpunk is used in generate\_arduino\_firmware()
+make cyberpunk-upload # Assuming cyberpunk is used in generate_arduino_firmware()
 ```
 
