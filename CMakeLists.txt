@@ -24,6 +24,7 @@
 set(CMAKE_TOOLCHAIN_FILE ${CMAKE_CURRENT_SOURCE_DIR}/arduino-cmake/cmake/ArduinoToolchain.cmake)
 
 cmake_minimum_required(VERSION 2.8)
+project(cyberpunk)
 
 # If None is specified, the debug flag -g causes debug info to be included in the hex
 set(CMAKE_BUILD_TYPE Release)
@@ -46,8 +47,6 @@ endif(CMAKE_HOST_SYSTEM_NAME STREQUAL "Linux")
 ############################################################################
 # cyberpunk
 ############################################################################
-
-project(cyberpunk)
 
 # Hack so that Eclipse can find the pins_arduino.h file specific to the mega2560
 # The "mega" part of this directory is determined by looking in boards.txt (see
