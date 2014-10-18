@@ -31,25 +31,32 @@ project(cyberpunk)
 set(CMAKE_BUILD_TYPE Release)
 
 # Board configuration
-set(ARDUINO_BOARD    leonardo)
+set(ARDUINO_BOARD    uno)
 set(ARCH             AVR8)
-set(F_CPU            16000000)
-set(F_USB            ${F_CPU})
+set(F_CPU            12000000)
+set(ARDUINO_PROGRAMMER usbtinyisp)
 
 # Options for flashing
-if(CMAKE_HOST_SYSTEM_NAME STREQUAL "Linux")
-	set(ARDUINO_DEFAULT_PORT "/dev/ttyACM1")
-elseif(CMAKE_HOST_SYSTEM_NAME STREQUAL "Darwin")
-	set(ARDUINO_DEFAULT_PORT "/dev/tty.usbmodem1451")
-elseif(CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows")
-	set(ARDUINO_DEFAULT_PORT )
-endif(CMAKE_HOST_SYSTEM_NAME STREQUAL "Linux")
+#if(CMAKE_HOST_SYSTEM_NAME STREQUAL "Linux")
+#  set(ARDUINO_DEFAULT_PORT "/dev/ttyACM1")
+#elseif(CMAKE_HOST_SYSTEM_NAME STREQUAL "Darwin")
+#  set(ARDUINO_DEFAULT_PORT "/dev/tty.usbmodem1451")
+#elseif(CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows")
+#  set(ARDUINO_DEFAULT_PORT )
+#endif(CMAKE_HOST_SYSTEM_NAME STREQUAL "Linux")
 
 # Tell CMake where to search for libraries use the link_directories command.
 # The command has to be used before defining any firmware or libraries
 # requiring those libraries. An Arduino library is ***any directory which
 # contains a header named after the directory.***
 link_directories(${CMAKE_CURRENT_SOURCE_DIR}/libraries)
+
+# A udev rule, placed in a new rule file (named whatever you'd like) in
+# /etc/udev/rules.d/ (or wherever you distro will expect it) will set the
+# permissions for the USBtinyISP correctly.
+# https://learn.adafruit.com/usbtinyisp/avrdude#for-linux
+#
+# SUBSYSTEM=="usb", ATTR{product}=="USBtiny", ATTR{idProduct}=="0c9f", ATTRS{idVendor}=="1781", MODE="0660", GROUP="dialout"
 
 
 ############################################################################
@@ -76,6 +83,8 @@ set(CYBERPUNK_SRCS src/main.cpp
 
 generate_arduino_firmware(cyberpunk
     BOARD ${ARDUINO_BOARD}
+    PORT usb
+    PROGRAMMER ${ARDUINO_PROGRAMMER}
     SRCS ${CYBERPUNK_SRCS}
     #LIBS lib/main_lib
     #LIBS lufa-core-device
