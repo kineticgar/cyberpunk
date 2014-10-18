@@ -18,6 +18,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
+
 ############################################################################
 # Arduino Toolchain. See https://github.com/queezythegreat/arduino-cmake
 ############################################################################
@@ -44,6 +45,13 @@ elseif(CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows")
 	set(ARDUINO_DEFAULT_PORT )
 endif(CMAKE_HOST_SYSTEM_NAME STREQUAL "Linux")
 
+# Tell CMake where to search for libraries use the link_directories command.
+# The command has to be used before defining any firmware or libraries
+# requiring those libraries. An Arduino library is ***any directory which
+# contains a header named after the directory.***
+link_directories(${CMAKE_CURRENT_SOURCE_DIR}/libraries)
+
+
 ############################################################################
 # cyberpunk
 ############################################################################
@@ -59,16 +67,11 @@ endif(CMAKE_HOST_SYSTEM_NAME STREQUAL "Linux")
 # Local include files so that public include files can find their referenced classes
 #include_directories("${CMAKE_CURRENT_SOURCE_DIR}/src")
 
-# Tell CMake where to search for libraries use the link_directories command.
-# The command has to be used before defining any firmware or libraries
-# requiring those libraries. An Arduino library is ***any directory which
-# contains a header named after the directory.***
-#link_directories(${CMAKE_CURRENT_SOURCE_DIR}/libraries)
-
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Weffc++ -pedantic -std=c++0x")
 
 set(CYBERPUNK_SRCS src/main.cpp
                      src/CyberpunkMaster.cpp
+                     src/NeoPixel.cpp
 )
 
 generate_arduino_firmware(cyberpunk

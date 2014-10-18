@@ -21,21 +21,10 @@
  */
 #pragma once
 
-#include "NeoPixel.h"
-
-class CyberpunkMaster
+class NeoPixel
 {
 public:
-  /**
-   * Set the baud rate and timeout duration for our serial communication.
-   */
   void Init(void);
 
-  /**
-   * Don't get dizzy.
-   */
-  void Spin(void);
-
-private:
-  NeoPixel m_neoPixel;
+  void Test(void);
 };

@@ -21,6 +21,7 @@
  */
 
 #include "CyberpunkMaster.h"
+#include "NeoPixel.h"
 
 #include <Arduino.h>
 
@@ -29,10 +30,13 @@ const unsigned int led = 13;
 void CyberpunkMaster::Init()
 {
   pinMode(led, OUTPUT);
+  m_neoPixel.Init();
 }
 
 void CyberpunkMaster::Spin()
 {
+  m_neoPixel.Test();
+
   for (;;)
   {
       digitalWrite(led, HIGH);
@@ -41,4 +45,3 @@ void CyberpunkMaster::Spin()
       delay(500);
   }
 }
-

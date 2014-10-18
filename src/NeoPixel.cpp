@@ -19,23 +19,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-#pragma once
 
 #include "NeoPixel.h"
 
-class CyberpunkMaster
+#include <Adafruit_NeoPixel.h>
+#include <stdint.h>
+
+const unsigned int PIN = 6;
+const unsigned int LED_COUNT = 15;
+
+// Parameter 1 = number of pixels in strip
+// Parameter 2 = pin number (most are valid)
+// Parameter 3 = pixel type flags, add together as needed:
+//   NEO_KHZ800  800 KHz bitstream (most NeoPixel products w/WS2812 LEDs)
+//   NEO_KHZ400  400 KHz (classic 'v1' (not v2) FLORA pixels, WS2811 drivers)
+//   NEO_GRB     Pixels are wired for GRB bitstream (most NeoPixel products)
+//   NEO_RGB     Pixels are wired for RGB bitstream (v1 FLORA pixels, not v2)
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(LED_COUNT, PIN, NEO_GRB + NEO_KHZ800);
+
+void NeoPixel::Init(void)
 {
-public:
-  /**
-   * Set the baud rate and timeout duration for our serial communication.
-   */
-  void Init(void);
+  strip.begin();
+  strip.show(); // Initialize all pixels to 'off'
+}
 
-  /**
-   * Don't get dizzy.
-   */
-  void Spin(void);
-
-private:
-  NeoPixel m_neoPixel;
-};
+void NeoPixel::Test(void)
+{
+  const uint32_t magenta = strip.Color(255, 0, 255);
+  strip.setPixelColor(0, magenta);
+  strip.show();
+}
