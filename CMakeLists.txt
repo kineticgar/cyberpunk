@@ -72,6 +72,7 @@ set(CYBERPUNK_SRCS src/main.cpp
 )
 
 generate_arduino_firmware(cyberpunk
+    BOARD ${ARDUINO_BOARD}
     SRCS ${CYBERPUNK_SRCS}
     #LIBS lib/main_lib
     #LIBS lufa-core-device
