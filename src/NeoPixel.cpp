@@ -26,7 +26,7 @@
 #include <stdint.h>
 
 const unsigned int PIN = 6;
-const unsigned int LED_COUNT = 15;
+const unsigned int LED_COUNT = 120;
 
 // Parameter 1 = number of pixels in strip
 // Parameter 2 = pin number (most are valid)
@@ -46,6 +46,7 @@ void NeoPixel::Init(void)
 void NeoPixel::Test(void)
 {
   const uint32_t magenta = strip.Color(255, 0, 255);
-  strip.setPixelColor(0, magenta);
+  for (unsigned int i = 0; i < LED_COUNT; i++)
+    strip.setPixelColor(i, magenta);
   strip.show();
 }
