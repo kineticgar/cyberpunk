@@ -13,15 +13,6 @@ import sys
 # (e.g. /dev/ttyACM0).
 ###########################################################################
 SERIAL_PORT_PREFIX = '/dev/ttyACM'
- 
-
-###########################################################################
-# LEONARDO_SEARCH_STRING
-#
-# Device is an Arduino Leonardo if the output of GET_DEVICE_PROPS_CMD
-# contains this string.
-###########################################################################
-LEONARDO_SEARCH_STRING = 'Arduino Leonardo'
 
 
 ###########################################################################
@@ -33,6 +24,15 @@ LEONARDO_SEARCH_STRING = 'Arduino Leonardo'
 ###########################################################################
 GET_DEVICE_PROPS_CMD = 'udevadm info -q all -n %s --attribute-walk'
 # https://unix.stackexchange.com/questions/77476/point-usb-phone-to-specific-dev-ttyacm-using-udev
+
+
+###########################################################################
+# LEONARDO_SEARCH_STRING
+#
+# Device is an Arduino Leonardo if the output of GET_DEVICE_PROPS_CMD
+# contains this string.
+###########################################################################
+LEONARDO_SEARCH_STRING = 'Arduino Leonardo'
 
 
 ###########################################################################
